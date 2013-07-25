@@ -53,7 +53,7 @@ func verifyPropertyTwo(node *RedBlackNode) {
 //Remove attempts to remove a RedBlackNode from the RedBlackTree
 func (tree *RedBlackTree) Remove(node *RedBlackNode) {
     if nil != node.left && nil != node.right {
-        var toReplace = tree.maximumNode(node)
+        var toReplace = tree.MaximumNode(node)
         node = toReplace
     }
     var child *RedBlackNode
@@ -145,10 +145,10 @@ func (tree RedBlackTree) MaximumNode(node *RedBlackNode) *RedBlackNode {
     return toReturn
 }
 
-//Insert attempts to insert a new node into the tree
+//Insert attempts to Insert a new node into the tree
 func (tree *RedBlackTree) Insert(node *RedBlackNode){
     node.color = RED
-    fmt.Println("Inserting")
+    fmt.Println("inserting")
     fmt.Println(node)
     if tree.root == nil{
         fmt.Println("New root")
@@ -210,8 +210,8 @@ func (tree *RedBlackTree) nodeColor(node *RedBlackNode) int{
     }
 }
 
-func (tree *RedBlackTree) verifyTreeInsert(node *RedBlackNode) {
-   tree.InsertCheckOne(node)
+func (tree *RedBlackTree) verifyTreeinsert(node *RedBlackNode) {
+   tree.insertCheckOne(node)
 }
 
 func (tree *RedBlackTree) insertCheckOne(node *RedBlackNode) {
@@ -219,13 +219,13 @@ func (tree *RedBlackTree) insertCheckOne(node *RedBlackNode) {
         node.color = BLACK
         return
     }
-    tree.InsertCheckTwo(node)
+    tree.insertCheckTwo(node)
 }
 func (tree *RedBlackTree) insertCheckTwo(node *RedBlackNode) {
     if  node.parent.color == BLACK{
             return
         }else{
-            tree.InsertCheckThree(node)
+            tree.insertCheckThree(node)
         }
 }
 
@@ -234,9 +234,9 @@ func (tree *RedBlackTree) insertCheckThree(node *RedBlackNode){
         node.parent.color = BLACK
         tree.uncle(node).color = BLACK
         tree.grandParent(node).color = RED
-        tree.InsertCheckOne(node)
+        tree.insertCheckOne(node)
     }else{
-        tree.InsertCheckFour(node)
+        tree.insertCheckFour(node)
     }
 }
 
@@ -248,7 +248,7 @@ func (tree *RedBlackTree) insertCheckFour(node *RedBlackNode){
         tree.rotateRight(node.parent)
         node = node.right
     }
-    tree.InsertCheckFive(node)
+    tree.insertCheckFive(node)
 }
 
 func (tree *RedBlackTree) insertCheckFive(node *RedBlackNode){
